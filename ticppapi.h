@@ -22,6 +22,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #ifndef TICPP_API_INCLUDED
 #define TICPP_API_INCLUDED
 
+#include "wx/dlimpexp.h"
+
 #undef TICPP_API
 
 #if defined(_WIN32) | defined(WIN32) | defined(WINDOWS) | defined(_WINDOWS)
@@ -45,8 +47,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endif
 
 #ifndef TICPP_API
+#if defined(WX_BUILD_TINYXML_DLL)
+	#define TICPP_API  WXEXPORT
+#elif defined(WX_USE_TINYXML_DLL)
+	#define TICPP_API  WXIMPORT
+#else
     //linux or windows-static library defines
     #define TICPP_API
+#endif
 #endif
 
 #endif	// TICPP_API_INCLUDED

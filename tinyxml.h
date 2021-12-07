@@ -48,7 +48,7 @@ distribution.
 
 #ifdef TIXML_USE_TICPP
 	#ifndef TIXML_USE_STL
-		#define TIXML_USE_STL
+//		#define TIXML_USE_STL
 	#endif
 #endif
 
@@ -58,6 +58,10 @@ distribution.
 	#include <sstream>
 	#define TIXML_STRING		std::string
 #else
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <ctype.h>
+
 	#include "tinystr.h"
 	#define TIXML_STRING		TiXmlString
 #endif
@@ -159,7 +163,7 @@ public:
 	virtual bool Visit( const TiXmlText& /*text*/ )					{ return true; }
 	/// Visit a comment node
 	virtual bool Visit( const TiXmlComment& /*comment*/ )			{ return true; }
-	/// Visit an unknow node
+	/// Visit an unknown node
 	virtual bool Visit( const TiXmlUnknown& /*unknown*/ )			{ return true; }
 };
 
